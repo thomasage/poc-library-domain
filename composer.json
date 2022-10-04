@@ -1,0 +1,38 @@
+{
+    "name": "thomasage/poc-library-domain",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThomasAge\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ThomasAge\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix",
+        "deptrac-cli": "tools/deptrac.phar",
+        "deptrac-svg": "tools/deptrac.phar --formatter=graphviz-image --output=deptrac.svg",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html=.phpunit.coverage",
+        "qa": [
+            "@cs",
+            "@phpstan",
+            "@phpunit",
+            "@deptrac-cli",
+            "@deptrac-svg"
+        ]
+    }
+}

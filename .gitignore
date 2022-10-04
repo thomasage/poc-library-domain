@@ -1,0 +1,8 @@
+/.phpunit.cache
+/.phpunit.coverage
+/vendor
+/.deptrac.cache
+/.php-cs-fixer.cache
+/deptrac.svg
+/phpstan.neon
+/phpunit.xml

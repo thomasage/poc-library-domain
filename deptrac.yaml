@@ -1,0 +1,23 @@
+deptrac:
+    paths:
+        - src/
+    layers:
+        -   name: Domain
+            collectors:
+                -   type: directory
+                    value: src/.*/Domain/.*
+        -   name: Shared
+            collectors:
+                -   type: directory
+                    value: src/Shared/.*
+        -   name: UseCase
+            collectors:
+                -   type: directory
+                    value: src/.*/UseCase/.*
+    ruleset:
+        Domain:
+            - Shared
+        Shared: ~
+        UseCase:
+            - Domain
+            - Shared
