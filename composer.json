@@ -1,5 +1,6 @@
 {
     "name": "thomasage/poc-library-domain",
+    "description": "Just another proof-of-concept to implement Clean Architecture in PHP",
     "type": "project",
     "license": "MIT",
     "require": {
