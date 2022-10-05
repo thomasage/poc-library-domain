@@ -6,6 +6,7 @@ namespace ThomasAge\Library\Domain\Book;
 
 final class Book
 {
+    private Author $author;
     private BookId $id;
     private BookTitle $title;
 
@@ -13,9 +14,10 @@ final class Book
     {
     }
 
-    public static function create(BookId $id, BookTitle $title): self
+    public static function create(BookId $id, BookTitle $title, Author $author): self
     {
         $book = new self();
+        $book->author = $author;
         $book->id = $id;
         $book->title = $title;
 
@@ -25,6 +27,7 @@ final class Book
     public static function fromState(BookState $state): self
     {
         $book = new self();
+        $book->author = new Author($state->author);
         $book->id = new BookId($state->id);
         $book->title = new BookTitle($state->title);
 
@@ -34,6 +37,7 @@ final class Book
     public function getState(): BookState
     {
         $state = new BookState();
+        $state->author = (string) $this->author;
         $state->id = (string) $this->id;
         $state->title = (string) $this->title;
 

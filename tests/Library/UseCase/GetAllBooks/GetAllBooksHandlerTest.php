@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ThomasAge\Tests\Library\UseCase\GetAllBooks;
 
 use PHPUnit\Framework\TestCase;
+use ThomasAge\Library\Domain\Book\Author;
 use ThomasAge\Library\Domain\Book\Book;
 use ThomasAge\Library\Domain\Book\BookId;
 use ThomasAge\Library\Domain\Book\BookService;
@@ -33,7 +34,13 @@ final class GetAllBooksHandlerTest extends TestCase implements GetAllBooksPresen
 
     private function createBook(string $id, string $title): void
     {
-        $this->bookGateway->addBook(Book::create(new BookId($id), new BookTitle($title)));
+        $this->bookGateway->addBook(
+            Book::create(
+                new BookId($id),
+                new BookTitle($title),
+                new Author('J. K. Rowling'),
+            )
+        );
     }
 
     public function present(GetAllBooksResponse $response): void

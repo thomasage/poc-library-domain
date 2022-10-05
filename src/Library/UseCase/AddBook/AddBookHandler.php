@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ThomasAge\Library\UseCase\AddBook;
 
+use ThomasAge\Library\Domain\Book\Author;
 use ThomasAge\Library\Domain\Book\Book;
 use ThomasAge\Library\Domain\Book\BookIdGenerator;
 use ThomasAge\Library\Domain\Book\BookService;
@@ -22,7 +23,11 @@ final class AddBookHandler
     {
         $response = new AddBookResponse();
         try {
-            $book = Book::create($this->bookIdGenerator->generate(), new BookTitle($request->title));
+            $book = Book::create(
+                $this->bookIdGenerator->generate(),
+                new BookTitle($request->title),
+                new Author($request->author),
+            );
             $this->bookService->addBook($book);
             $response->id = (string) $book->id();
         } catch (DomainException $exception) {

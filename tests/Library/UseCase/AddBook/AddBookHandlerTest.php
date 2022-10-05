@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ThomasAge\Tests\Library\UseCase\AddBook;
 
 use PHPUnit\Framework\TestCase;
+use ThomasAge\Library\Domain\Book\Author;
 use ThomasAge\Library\Domain\Book\Book;
 use ThomasAge\Library\Domain\Book\BookId;
 use ThomasAge\Library\Domain\Book\BookService;
@@ -24,6 +25,7 @@ final class AddBookHandlerTest extends TestCase implements AddBookPresenter
     public function testShouldAddBook(): void
     {
         $request = new AddBookRequest();
+        $request->author = 'J. K. Rowling';
         $request->title = 'Harry Potter and the Chamber of Secrets';
 
         $this->handler->handle($request, $this);
@@ -35,6 +37,7 @@ final class AddBookHandlerTest extends TestCase implements AddBookPresenter
     public function testShouldReturnsErrorIfBookAlreadyExists(): void
     {
         $request = new AddBookRequest();
+        $request->author = 'J. K. Rowling';
         $request->title = 'Harry Potter and the Philosopher\'s Stone';
 
         $this->handler->handle($request, $this);
@@ -54,7 +57,8 @@ final class AddBookHandlerTest extends TestCase implements AddBookPresenter
         $bookGateway->addBook(
             Book::create(
                 new BookId('HP1'),
-                new BookTitle('Harry Potter and the Philosopher\'s Stone')
+                new BookTitle('Harry Potter and the Philosopher\'s Stone'),
+                new Author('J. K. Rowling'),
             )
         );
         $bookIdGenerator = new BookIdGeneratorMd5();

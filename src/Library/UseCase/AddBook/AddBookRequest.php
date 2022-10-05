@@ -6,5 +6,6 @@ namespace ThomasAge\Library\UseCase\AddBook;
 
 final class AddBookRequest
 {
+    public string $author;
     public string $title;
 }

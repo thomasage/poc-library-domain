@@ -13,6 +13,7 @@ final class BookTest extends TestCase
     public function testCanHydrateBookFromState(): void
     {
         $state = new BookState();
+        $state->author = 'J. K. Rowling';
         $state->id = 'HP1';
         $state->title = 'Harry Potter and the Philosopher\'s Stone';
 
